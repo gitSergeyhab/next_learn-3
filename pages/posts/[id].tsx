@@ -1,14 +1,15 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import  Head  from "next/head";
-import ContactInfo from "../../components/contact-info";
 import Heading from "../../components/heading";
 
 import { BASE_URL } from "../../const";
+import { PostType } from '../../types';
 
 
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const res = await fetch(`${BASE_URL}/posts`);
-  const data = await res.json();
+  const data: PostType[] = await res.json();
 
   const paths = data.map(({id}) => ({ params: { id: id.toString()} } ));
 
@@ -18,8 +19,8 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async (context) => {
-  const {id} = context.params;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { id } = context.params as { id: string };
   const res = await fetch(`${BASE_URL}/posts/${id}`);
   const post = await res.json();
 
@@ -32,19 +33,19 @@ export const getStaticProps = async (context) => {
   }
 }
 
-const Post = ({post}) => {
+const Post = ({post} : {post: PostType}) => {
   const {title, body} = post;
 
     return (
-        <>
-            <Head>
-                <title> Post</title>
-            </Head>
-            <div>Post</div>
-            <Heading tag={'h2'}>{title}</Heading>
-            <Heading tag={'h4'}>{body}</Heading>
-            
-        </>
+      <>
+        <Head>
+            <title> Post</title>
+        </Head>
+        <div>Post</div>
+        <Heading tag={'h2'}>{title}</Heading>
+        <Heading tag={'h4'}>{body}</Heading>
+
+      </>
     )
 }
 

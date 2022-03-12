@@ -2,11 +2,12 @@ import Heading from "../components/heading";
 import styles from '../styles/home.module.scss';
 import  Head  from "next/head";
 import Socials from "../components/socials";
+import { SocialType } from '../types';
 
 
 export const getStaticProps = async () => {
   const res = await fetch(`http://localhost:3000/api/socials`);
-  const socials = await res.json();
+  const socials: SocialType[] = await res.json();
 
   if (!socials) {
     return { notFound: true };
@@ -19,7 +20,7 @@ export const getStaticProps = async () => {
 
 
 
-const Home = ({socials}) => {
+const Home = ({socials} : {socials: SocialType[]}) => {
 
   return (
     <>
@@ -31,9 +32,9 @@ const Home = ({socials}) => {
       <Socials socials={socials}/>
     </div>
 
-    
+
     </>
   )
-} 
+}
 
 export default Home;

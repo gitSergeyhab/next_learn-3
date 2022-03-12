@@ -15,29 +15,29 @@ export const getStaticProps = async () => {
 
   return {
     props: { posts }
-  }
-}
+  };
+};
 
 
 
 
 const Posts = ({posts} : {posts: PostType[]}) => {
-  const postList = posts.map(({id, title}) => 
+  const postList = posts.map(({id, title}) =>
   <li key={id}>
-      <Link href={`posts/${id}`}>
-          <a><span>Title: {title}</span></a>
-      </Link>
+    <Link href={`posts/${id}`}>
+      <a><span>Title: {title}</span></a>
+    </Link>
   </li>);
 
-return ( 
+return (
 <>
   <Head>
-      <title> Posts</title>
+    <title> Posts</title>
   </Head>
   <div>Posts List</div>
-  <ul>{postList}</ul> 
+  <ul>{postList}</ul>
 </>
 
-)} 
+);};
 
 export default Posts;

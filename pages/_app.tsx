@@ -1,3 +1,4 @@
+import type { AppProps } from 'next/app'
 import '../styles/globals.scss'
 import Layout from '../components/layout'
 import Image from 'next/image';
@@ -5,7 +6,7 @@ import src from '../public/youtube.png'
 import Head from 'next/head';
 
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps } : AppProps) => {
   return (
     <Layout>
       <Head>
@@ -24,7 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
         placeholder='blur'
       /> */}
     </Layout>
-  ) 
+  )
 }
 
-export default MyApp
+export default MyApp;

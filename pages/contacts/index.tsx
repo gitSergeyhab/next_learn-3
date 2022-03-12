@@ -1,6 +1,7 @@
 import  Head  from "next/head";
 import Link from 'next/link';
 import { BASE_URL } from "../../const";
+import { ContactType } from '../../types';
 
 
 
@@ -18,24 +19,23 @@ export const getStaticProps = async () => {
 }
 
 
-const Contact = ({contacts}) => {
+const Contact = ({contacts} : {contacts: ContactType[]}) => {
 
-    const contactList = contacts.map(({id, name, email}) => 
-        <li key={id}>
-            <Link href={`contacts/${id}`}>
-                <a><span>Name: {name} - Email: {email}</span></a>
-            </Link>
-        </li>);
+  const contactList = contacts.map(({id, name, email}) =>
+    <li key={id}>
+      <Link href={`contacts/${id}`}>
+        <a><span>Name: {name} - Email: {email}</span></a>
+      </Link>
+    </li>);
 
-    return ( 
-    <>
+    return (
+      <>
         <Head>
-            <title> Contacts</title>
+          <title> Contacts</title>
         </Head>
         <div>Contacts List</div>
-        <ul>{contactList}</ul> 
-    </>
-    
+        <ul>{contactList}</ul>
+      </>
     )
 }
 
