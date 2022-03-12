@@ -1,0 +1,11 @@
+{
+	"root": true,
+
+	"rules": {
+		"semi": "off"
+
+	},
+	"extends": [
+		"eslint:recommended"
+	]
+}
